@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.uninurse.logic.commands.AddConditionCommand.ADD_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -65,8 +66,7 @@ public class AddConditionCommandTest {
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage,
-                AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class AddConditionCommandTest {
     @Test
     public void execute_invalidDuplicateConditionUnfilteredList_throwsCommandException() {
         Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Condition condition = new Condition("H1N1");
+        Condition condition = new Condition("H1N1"); // TODO: find alternative way to test
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,
                 String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
@@ -105,8 +105,7 @@ public class AddConditionCommandTest {
         expectedModel.setPerson(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage,
-                AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -125,11 +124,11 @@ public class AddConditionCommandTest {
     @Test
     public void execute_invalidDuplicateConditionFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Condition condition = new Condition("H1N1");
+        Patient editedPatient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Condition condition = new Condition("H1N1"); // TODO: find alternative way to test
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,
-                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
+                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, editedPatient.getName()));
     }
 
     @Test
