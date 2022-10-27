@@ -295,11 +295,11 @@ public class UpdatedPatientCard extends UiPart<Region> {
             Label taskRecurrenceLabel = new Label(task.getRecurrenceString());
             taskRecurrenceLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                     + "-fx-font-size: 13px;"
-                    + "-fx-text-fill: black;");
+                    + "-fx-text-fill: #393D47;");
             taskRecurrenceBox.getChildren().add(taskRecurrenceLabel);
 
             if (task.getDateTime().isPastDate()) {
-                taskRecurrenceBox.setStyle("-fx-background-color: #ebc000;"
+                taskRecurrenceBox.setStyle("-fx-background-color: #95b3e8;"
                         + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
                         // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                         + "-fx-background-radius: 5;");

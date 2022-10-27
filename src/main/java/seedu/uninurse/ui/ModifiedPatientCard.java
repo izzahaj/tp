@@ -89,7 +89,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
 
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
+                + "-fx-border-radius: 2;" + "-fx-border-color: #D3D3D3;");
 
         // Undo add or Redo delete
         if (patientListTracker.isAdd() && isUndo || patientListTracker.isDelete() && isRedo) {
@@ -118,14 +118,14 @@ public class ModifiedPatientCard extends UiPart<Region> {
         Patient editedPatient = this.patient;
         if (patientListTracker.isEdit() && isUndo) {
             this.header.setStyle("");
-            this.header.setText("Modified Patient:");
+            this.header.setText("Modified Patient");
             this.patient = patientListTracker.getDeletedPatients().get().get(0);
             editedPatient = patientListTracker.getAddedPatients().get().get(0);
         }
 
         if (patientListTracker.isEdit() && isRedo) {
             this.header.setStyle("");
-            this.header.setText("Modified Patient:");
+            this.header.setText("Modified Patient");
             this.patient = patientListTracker.getAddedPatients().get().get(0);
             editedPatient = patientListTracker.getDeletedPatients().get().get(0);
         }
@@ -138,7 +138,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
 
         /* Conditions */
-        conditionHeader.setText("Conditions:");
+        conditionHeader.setText("Conditions");
         if (patient.getConditions().isEmpty()) {
             conditionContainer.getChildren().add(getEmptyConditionBox());
         } else {
@@ -176,7 +176,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         }
 
         /* Medications */
-        medicationHeader.setText("Medications:");
+        medicationHeader.setText("Medications");
         if (patient.getMedications().isEmpty()) {
             medicationContainer.getChildren().add(getEmptyMedicationBox());
         } else {
@@ -215,7 +215,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         }
 
         /* Tasks */
-        taskHeader.setText("Tasks:");
+        taskHeader.setText("Tasks");
         if (patient.getTasks().isEmpty()) {
             taskContainer.getChildren().add(getEmptyTaskBox());
         } else {
@@ -252,7 +252,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         }
 
         /* Remarks */
-        remarkHeader.setText("Remarks:");
+        remarkHeader.setText("Remarks");
         if (patient.getRemarks().isEmpty()) {
             remarkContainer.getChildren().add(getEmptyRemarkBox());
         } else {
@@ -299,7 +299,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         Label indexLabel = new Label(String.valueOf(index));
         indexLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         indexBox.getChildren().add(indexLabel);
         return indexBox;
@@ -313,7 +313,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         emptyConditionLabel.setWrapText(true);
         emptyConditionLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         conditionBox.getChildren().add(emptyConditionLabel);
         return conditionBox;
@@ -327,7 +327,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         conditionLabel.setWrapText(true);
         conditionLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         conditionBox.getChildren().addAll(getIndexBox(conditionIndex), conditionLabel);
         return conditionBox;
@@ -340,7 +340,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         emptyMedicationLabel.setWrapText(true);
         emptyMedicationLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         medicationBox.getChildren().add(emptyMedicationLabel);
         return medicationBox;
@@ -359,14 +359,14 @@ public class ModifiedPatientCard extends UiPart<Region> {
         medicationTypeLabel.setWrapText(true);
         medicationTypeLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         medicationTypeBox.getChildren().add(medicationTypeLabel);
 
         Label medicationDosageLabel = new Label(medication.getDosage());
         medicationDosageLabel.setWrapText(true);
         medicationDosageLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         medicationBox.getChildren().addAll(getIndexBox(medicationIndex), medicationTypeBox, medicationDosageLabel);
         return medicationBox;
@@ -379,7 +379,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         emptyTaskLabel.setWrapText(true);
         emptyTaskLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         taskBox.getChildren().add(emptyTaskLabel);
         return taskBox;
@@ -393,7 +393,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         taskNameLabel.setWrapText(true);
         taskNameLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         HBox taskDateBox = new HBox();
         taskDateBox.setMinWidth(72.5);
@@ -404,7 +404,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         Label taskDateLabel = new Label(task.getDateTime().getDate());
         taskDateLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         taskDateBox.getChildren().add(taskDateLabel);
 
         HBox taskTimeBox = new HBox();
@@ -416,7 +416,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         Label taskTimeLabel = new Label(task.getDateTime().getTime());
         taskTimeLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         taskTimeBox.getChildren().add(taskTimeLabel);
 
         if (task.getDateTime().isPastDate()) {
@@ -443,7 +443,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
             Label taskRecurrenceLabel = new Label(task.getRecurrenceString());
             taskRecurrenceLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                     + "-fx-font-size: 13px;"
-                    + "-fx-text-fill: black;");
+                    + "-fx-text-fill: #393D47;");
             taskRecurrenceBox.getChildren().add(taskRecurrenceLabel);
 
             if (task.getDateTime().isPastDate()) {
@@ -473,7 +473,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         remarkLabel.setWrapText(true);
         remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         remarkBox.getChildren().add(remarkLabel);
         return remarkBox;
@@ -490,7 +490,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
         remarkLabel.setWrapText(true);
         remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         remarkBox.getChildren().add(remarkLabel);
         return remarkBox;
