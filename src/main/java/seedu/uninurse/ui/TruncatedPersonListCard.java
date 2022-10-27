@@ -36,7 +36,7 @@ public class TruncatedPersonListCard extends UiPart<Region> {
         super(FXML);
         this.cardPane.setStyle("-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
+                + "-fx-border-radius: 2;" + "-fx-border-color: #D3D3D3;");
 
         this.patient = patient;
         this.id.setText(displayedIndex + ". ");
@@ -46,7 +46,7 @@ public class TruncatedPersonListCard extends UiPart<Region> {
 
         if (patient.getTasks().size() > 0) {
             StackPane taskNumberStackPane = new StackPane();
-            taskNumberStackPane.setStyle("-fx-background-color: #2154ad;"
+            taskNumberStackPane.setStyle("-fx-background-color: #95b3e8;"
                     + "-fx-padding: 3;" + "-fx-border-radius: 2;"
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                     + "-fx-background-radius: 5;");

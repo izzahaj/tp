@@ -81,7 +81,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
 
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
+                + "-fx-border-radius: 2;" + "-fx-border-color: #D3D3D3;");
         this.patient = patient;
 
         name.setText(patient.getName().getValue());
@@ -91,7 +91,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
 
-        conditionHeader.setText("Conditions:");
+        conditionHeader.setText("Conditions");
         if (patient.getConditions().isEmpty()) {
             conditionContainer.getChildren().add(getEmptyConditionBox());
         } else {
@@ -103,7 +103,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
             }
         }
 
-        medicationHeader.setText("Medications:");
+        medicationHeader.setText("Medications");
         if (patient.getMedications().isEmpty()) {
             medicationContainer.getChildren().add(getEmptyMedicationBox());
         } else {
@@ -115,7 +115,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
             }
         }
 
-        taskHeader.setText("Tasks:");
+        taskHeader.setText("Tasks");
         if (patient.getTasks().isEmpty()) {
             taskContainer.getChildren().add(getEmptyTaskBox());
         } else {
@@ -128,7 +128,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
             }
         }
 
-        remarkHeader.setText("Remarks:");
+        remarkHeader.setText("Remarks");
         if (patient.getRemarks().isEmpty()) {
             remarkContainer.getChildren().add(getEmptyRemarkBox());
         } else {
@@ -141,14 +141,14 @@ public class UpdatedPatientCard extends UiPart<Region> {
     private HBox getIndexBox(int index) {
         HBox indexBox = new HBox();
         indexBox.setStyle("-fx-background-color: #bfcddb;"
-                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
 
         Label indexLabel = new Label(String.valueOf(index));
         indexLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         indexBox.getChildren().add(indexLabel);
         return indexBox;
@@ -162,7 +162,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         emptyConditionLabel.setWrapText(true);
         emptyConditionLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         conditionBox.getChildren().add(emptyConditionLabel);
         return conditionBox;
@@ -176,7 +176,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         conditionLabel.setWrapText(true);
         conditionLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         conditionBox.getChildren().addAll(getIndexBox(conditionIndex), conditionLabel);
         return conditionBox;
@@ -189,7 +189,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         emptyMedicationLabel.setWrapText(true);
         emptyMedicationLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         medicationBox.getChildren().add(emptyMedicationLabel);
         return medicationBox;
@@ -200,22 +200,22 @@ public class UpdatedPatientCard extends UiPart<Region> {
         medicationBox.setSpacing(2.5);
 
         HBox medicationTypeBox = new HBox();
-        medicationTypeBox.setStyle("-fx-background-color: #c2a8ff;"
-                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+        medicationTypeBox.setStyle("-fx-background-color: #D3CEDF;"
+                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
         Label medicationTypeLabel = new Label(medication.getType());
         medicationTypeLabel.setWrapText(true);
         medicationTypeLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         medicationTypeBox.getChildren().add(medicationTypeLabel);
 
         Label medicationDosageLabel = new Label(medication.getDosage());
         medicationDosageLabel.setWrapText(true);
         medicationDosageLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         medicationBox.getChildren().addAll(getIndexBox(medicationIndex), medicationTypeBox, medicationDosageLabel);
         return medicationBox;
@@ -228,7 +228,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         emptyTaskLabel.setWrapText(true);
         emptyTaskLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         taskBox.getChildren().add(emptyTaskLabel);
         return taskBox;
@@ -242,41 +242,41 @@ public class UpdatedPatientCard extends UiPart<Region> {
         taskNameLabel.setWrapText(true);
         taskNameLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         HBox taskDateBox = new HBox();
         taskDateBox.setMinWidth(72.5);
         taskDateBox.setStyle("-fx-background-color: #95b3e8;"
-                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
         Label taskDateLabel = new Label(task.getDateTime().getDate());
         taskDateLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         taskDateBox.getChildren().add(taskDateLabel);
 
         HBox taskTimeBox = new HBox();
         taskTimeBox.setMinWidth(62.5);
         taskTimeBox.setStyle("-fx-background-color: #95b3e8;"
-                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
         Label taskTimeLabel = new Label(task.getDateTime().getTime());
         taskTimeLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
         taskTimeBox.getChildren().add(taskTimeLabel);
 
         if (task.getDateTime().isPastDate()) {
-            taskDateBox.setStyle("-fx-background-color: #ebc000;"
-                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+            taskDateBox.setStyle("-fx-background-color: #F17A7E;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                    + "-fx-background-radius: 5;");
-            taskTimeBox.setStyle("-fx-background-color: #ebc000;"
-                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                    + "-fx-background-radius: 4;");
+            taskTimeBox.setStyle("-fx-background-color: #F17A7E;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 0.5;"
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                    + "-fx-background-radius: 5;");
+                    + "-fx-background-radius: 4;");
         }
 
         taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskNameLabel);
@@ -285,16 +285,16 @@ public class UpdatedPatientCard extends UiPart<Region> {
 
     private VBox getEmptyRemarkBox() {
         VBox remarkBox = new VBox();
-        remarkBox.setStyle("-fx-background-color: #b6ecfa;"
-                + "-fx-padding: 5;" + "-fx-border-radius: 2;"
+        remarkBox.setStyle("-fx-background-color: #F7ECDE;"
+                + "-fx-padding: 5;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
 
         Label remarkLabel = new Label("No remarks");
         remarkLabel.setWrapText(true);
         remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         remarkBox.getChildren().add(remarkLabel);
         return remarkBox;
@@ -302,16 +302,16 @@ public class UpdatedPatientCard extends UiPart<Region> {
 
     private VBox getRemarkBox(Remark remark) {
         VBox remarkBox = new VBox();
-        remarkBox.setStyle("-fx-background-color: #b6ecfa;"
-                + "-fx-padding: 5;" + "-fx-border-radius: 2;"
+        remarkBox.setStyle("-fx-background-color: #F7ECDE;"
+                + "-fx-padding: 5;" + "-fx-border-radius: 0.5;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                + "-fx-background-radius: 5;");
+                + "-fx-background-radius: 4;");
 
         Label remarkLabel = new Label(remark.getValue());
         remarkLabel.setWrapText(true);
         remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
-                + "-fx-text-fill: black;");
+                + "-fx-text-fill: #393D47;");
 
         remarkBox.getChildren().add(remarkLabel);
         return remarkBox;
