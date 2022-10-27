@@ -2,6 +2,7 @@ package seedu.uninurse.ui;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -112,8 +113,13 @@ public class OutputPanel extends UiPart<Region> {
      */
     public void handleUndo(PatientListTracker patientListTracker) {
         outputView.getChildren().clear();
-        UndoCard undoCard = new UndoCard(patientListTracker);
-        outputView.getChildren().add(undoCard.getRoot());
+        if (patientListTracker.isSinglePatient()) {
+            outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, true, false).getRoot());
+        }
+
+        if (patientListTracker.isMultiplePatients()) {
+            outputView.getChildren().add(new UndoCard(patientListTracker).getRoot());
+        }
     }
 
     /**
@@ -121,7 +127,20 @@ public class OutputPanel extends UiPart<Region> {
      */
     public void handleRedo(PatientListTracker patientListTracker) {
         outputView.getChildren().clear();
-        RedoCard redoCard = new RedoCard(patientListTracker);
-        outputView.getChildren().add(redoCard.getRoot());
+        if (patientListTracker.isSinglePatient()) {
+            outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, false, true).getRoot());
+        }
+
+        if (patientListTracker.isMultiplePatients()) {
+            outputView.getChildren().add(new RedoCard(patientListTracker).getRoot());
+        }
+    }
+
+    /**
+     * Updates the outputView panel accordingly with {@code patients} if executed command is Find.
+     */
+    public void handleFind(List<Patient> patients) {
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new UpdatedPersonListPanel(FXCollections.observableList(patients)).getRoot());
     }
 }

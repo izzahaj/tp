@@ -12,6 +12,7 @@ import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -73,7 +74,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
     private VBox remarkHeaderPane;
 
     /**
-     * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
+     * Creates a {@code UpdatedPatientCard} with the given {@code Patient} and {@code headerString}.
      */
     public UpdatedPatientCard(Patient patient, String headerString) {
         super(FXML);
@@ -91,6 +92,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
 
+        /* Conditions */
         conditionHeader.setText("Conditions");
         if (patient.getConditions().isEmpty()) {
             conditionContainer.getChildren().add(getEmptyConditionBox());
@@ -98,11 +100,11 @@ public class UpdatedPatientCard extends UiPart<Region> {
             ConditionList conditionList = patient.getConditions();
             for (int i = 0; i < conditionList.size(); i++) {
                 Condition condition = conditionList.get(i);
-                conditionContainer.getChildren().add(
-                        getConditionBox(i + 1, condition));
+                conditionContainer.getChildren().add(getConditionBox(i + 1, condition));
             }
         }
 
+        /* Medications */
         medicationHeader.setText("Medications");
         if (patient.getMedications().isEmpty()) {
             medicationContainer.getChildren().add(getEmptyMedicationBox());
@@ -110,11 +112,11 @@ public class UpdatedPatientCard extends UiPart<Region> {
             MedicationList medicationList = patient.getMedications();
             for (int i = 0; i < medicationList.size(); i++) {
                 Medication medication = medicationList.get(i);
-                medicationContainer.getChildren().add(
-                        getMedicationBox(i + 1, medication));
+                medicationContainer.getChildren().add(getMedicationBox(i + 1, medication));
             }
         }
 
+        /* Tasks */
         taskHeader.setText("Tasks");
         if (patient.getTasks().isEmpty()) {
             taskContainer.getChildren().add(getEmptyTaskBox());
@@ -128,6 +130,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
             }
         }
 
+        /* Remarks */
         remarkHeader.setText("Remarks");
         if (patient.getRemarks().isEmpty()) {
             remarkContainer.getChildren().add(getEmptyRemarkBox());
@@ -278,6 +281,34 @@ public class UpdatedPatientCard extends UiPart<Region> {
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                     + "-fx-background-radius: 4;");
         }
+
+        // shit code quality be like
+        /* TODO: improve shit */
+        if (task instanceof RecurringTask) {
+            task = (RecurringTask) task;
+            HBox taskRecurrenceBox = new HBox();
+            taskRecurrenceBox.setMinWidth(62.5);
+            taskRecurrenceBox.setStyle("-fx-background-color: #95b3e8;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                    + "-fx-background-radius: 5;");
+            Label taskRecurrenceLabel = new Label(task.getRecurrenceString());
+            taskRecurrenceLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                    + "-fx-font-size: 13px;"
+                    + "-fx-text-fill: black;");
+            taskRecurrenceBox.getChildren().add(taskRecurrenceLabel);
+
+            if (task.getDateTime().isPastDate()) {
+                taskRecurrenceBox.setStyle("-fx-background-color: #ebc000;"
+                        + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                        // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                        + "-fx-background-radius: 5;");
+            }
+            taskBox.getChildren().addAll(
+                    getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
+            return taskBox;
+        }
+        /* */
 
         taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskNameLabel);
         return taskBox;
