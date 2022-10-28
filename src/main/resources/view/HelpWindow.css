@@ -1,12 +1,9 @@
-#copyButton {
-    -fx-text-fill: white;
-}
-
 #helpMessage {
     -fx-text-fill: #393D47;
 }
 
 #copyButton {
+    -fx-text-fill: white;
     -fx-background-color: derive(#388087, 20%);
 }
 
